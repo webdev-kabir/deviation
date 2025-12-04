@@ -1,0 +1,40 @@
+/* Custom form styles */
+input, select, textarea {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Error state */
+input.border-red-500,
+select.border-red-500,
+textarea.border-red-500 {
+  border-color: var(--color-error);
+}
+
+/* Enhanced accessibility for form inputs */
+input:focus,
+select:focus,
+textarea:focus {
+  border-width: 2px;
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* Disabled state */
+input:disabled, select:disabled, textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+

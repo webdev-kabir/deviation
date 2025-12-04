@@ -1,0 +1,253 @@
+<!-- Skip Navigation Link for Accessibility -->
+<a 
+  appA11ySkipLink 
+  [targetId]="'main-content'"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg"
+>
+  Skip to main content
+</a>
+
+<!-- Header -->
+<header class="bg-background-card border-b border-border sticky top-0 z-40 shadow-sm">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-primary to-info rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-xl">D</span>
+        </div>
+        <h1 class="text-2xl font-bold text-text-primary">{{ title() }}</h1>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-text-secondary">Netpower Deviation</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main id="main-content" class="container mx-auto px-4 py-8" tabindex="-1">
+  <!-- Hero Section -->
+  <section class="text-center py-12 mb-12">
+    <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+      Welcome to {{ title() }}
+    </h2>
+    <p class="text-xl text-text-secondary max-w-2xl mx-auto mb-8">
+      An Angular 20 project with full WCAG accessibility support, built for the Netpower Deviation system.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <app-accessible-button
+        [variant]="'primary'"
+        [size]="'large'"
+        (clicked)="openModal()"
+      >
+        Open Demo Modal
+      </app-accessible-button>
+      <app-accessible-button
+        [variant]="'secondary'"
+        [size]="'large'"
+        (clicked)="handleButtonClick()"
+      >
+        Test Accessible Button
+      </app-accessible-button>
+    </div>
+  </section>
+
+  <!-- Status Cards Demo -->
+  <section class="mb-12">
+    <h3 class="text-3xl font-bold text-text-primary mb-8 text-center">Status Indicators</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Critical Card -->
+      <div class="card card-hover p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-danger-light rounded-full flex items-center justify-center">
+            <span class="text-danger text-xl">⚠️</span>
+          </div>
+          <div>
+            <span class="badge badge-critical">Critical</span>
+          </div>
+        </div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Overdue Cases</h4>
+        <p class="text-3xl font-bold text-danger">5</p>
+        <p class="text-sm text-text-secondary mt-2">↑ 12% from last week</p>
+      </div>
+
+      <!-- Warning Card -->
+      <div class="card card-hover p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-warning-light rounded-full flex items-center justify-center">
+            <span class="text-warning text-xl">📋</span>
+          </div>
+          <div>
+            <span class="badge badge-warning">Medium</span>
+          </div>
+        </div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Open Cases</h4>
+        <p class="text-3xl font-bold text-warning">12</p>
+        <p class="text-sm text-text-secondary mt-2">↑ 5% from last week</p>
+      </div>
+
+      <!-- Info Card -->
+      <div class="card card-hover p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-info-light rounded-full flex items-center justify-center">
+            <span class="text-info text-xl">📁</span>
+          </div>
+          <div>
+            <span class="badge badge-info">Ongoing</span>
+          </div>
+        </div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">In Progress</h4>
+        <p class="text-3xl font-bold text-info">8</p>
+        <p class="text-sm text-text-secondary mt-2">↓ 3% from last week</p>
+      </div>
+
+      <!-- Success Card -->
+      <div class="card card-hover p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-success-light rounded-full flex items-center justify-center">
+            <span class="text-success text-xl">✓</span>
+          </div>
+          <div>
+            <span class="badge badge-success">Completed</span>
+          </div>
+        </div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Resolved</h4>
+        <p class="text-3xl font-bold text-success">24</p>
+        <p class="text-sm text-text-secondary mt-2">↑ 18% from last week</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="mb-12">
+    <h3 class="text-3xl font-bold text-text-primary mb-8 text-center">Accessibility Features</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Feature Card 1 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">♿</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">WCAG 2.1 Compliant</h4>
+        <p class="text-text-secondary">
+          Full accessibility support with Angular CDK, ARIA attributes, and keyboard navigation.
+        </p>
+      </div>
+
+      <!-- Feature Card 2 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">⌨️</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Keyboard Navigation</h4>
+        <p class="text-text-secondary">
+          Complete keyboard support with visible focus indicators and logical tab order.
+        </p>
+      </div>
+
+      <!-- Feature Card 3 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">📢</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Screen Reader Ready</h4>
+        <p class="text-text-secondary">
+          Proper ARIA labels, live regions, and semantic HTML for assistive technologies.
+        </p>
+      </div>
+
+      <!-- Feature Card 4 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">🎨</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Tailwind CSS</h4>
+        <p class="text-text-secondary">
+          Professional design system with semantic colors matching Netpower branding.
+        </p>
+      </div>
+
+      <!-- Feature Card 5 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">✨</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Modern Angular</h4>
+        <p class="text-text-secondary">
+          Built with Angular 20 using standalone components and signals.
+        </p>
+      </div>
+
+      <!-- Feature Card 6 -->
+      <div class="card p-6">
+        <div class="text-4xl mb-4">🚀</div>
+        <h4 class="text-xl font-semibold text-text-primary mb-2">Production Ready</h4>
+        <p class="text-text-secondary">
+          ESLint, Prettier, and TypeScript strict mode for code quality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Form Section -->
+  <section class="mb-12">
+    <h3 class="text-3xl font-bold text-text-primary mb-8 text-center">Accessible Form Example</h3>
+    <app-accessible-form></app-accessible-form>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="mb-12 text-center">
+    <h3 class="text-3xl font-bold text-text-primary mb-6">Tech Stack</h3>
+    <div class="flex flex-wrap justify-center gap-3">
+      <span class="badge badge-info">Angular 20</span>
+      <span class="badge badge-info">Tailwind CSS</span>
+      <span class="badge badge-info">TypeScript</span>
+      <span class="badge badge-info">Angular CDK</span>
+      <span class="badge badge-success">ESLint</span>
+      <span class="badge badge-success">Prettier</span>
+      <span class="badge badge-warning">DevExpress Ready</span>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-card border-t border-border py-8 mt-12">
+  <div class="container mx-auto px-4 text-center">
+    <p class="text-text-secondary">
+      Built for Netpower Deviation with ❤️ using Angular 20 • 
+      <a href="https://angular.dev" target="_blank" rel="noopener" class="text-primary hover:underline">
+        Learn more about Angular
+      </a>
+    </p>
+  </div>
+</footer>
+
+<!-- Demo Modal -->
+<app-accessible-modal
+  [isOpen]="showModal"
+  [title]="'Demo Accessible Modal'"
+  (close)="closeModal()"
+>
+  <div class="space-y-4">
+    <p class="text-text-primary">
+      This is a fully accessible modal component with:
+    </p>
+    <ul class="list-disc list-inside text-text-secondary space-y-2">
+      <li>Focus trap (try pressing Tab)</li>
+      <li>Escape key to close</li>
+      <li>Proper ARIA attributes</li>
+      <li>Keyboard navigation support</li>
+      <li>Screen reader compatibility</li>
+    </ul>
+    <p class="text-text-secondary italic">
+      Press ESC or click outside to close this modal.
+    </p>
+  </div>
+  
+  <div footer class="flex gap-3 justify-end">
+    <app-accessible-button
+      [variant]="'ghost'"
+      (clicked)="closeModal()"
+    >
+      Cancel
+    </app-accessible-button>
+    <app-accessible-button
+      [variant]="'primary'"
+      (clicked)="closeModal()"
+    >
+      Got it!
+    </app-accessible-button>
+  </div>
+</app-accessible-modal>
+
+<router-outlet />
