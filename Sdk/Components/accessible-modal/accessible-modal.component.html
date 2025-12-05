@@ -1,0 +1,65 @@
+<!-- Modal Backdrop -->
+<div
+  *ngIf="isOpen"
+  class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+  (click)="onBackdropClick($event)"
+  (keydown)="onKeydown($event)"
+  [@fadeIn]
+>
+  <!-- Modal Container with Focus Trap -->
+  <div
+    cdkTrapFocus
+    [cdkTrapFocusAutoCapture]="true"
+    class="modal-container bg-background-card rounded-lg shadow-2xl relative"
+    [class]="getModalClasses()"
+    role="dialog"
+    [attr.aria-modal]="true"
+    [attr.aria-labelledby]="'modal-title'"
+    [@slideIn]
+  >
+    <!-- Modal Header -->
+    <div class="modal-header flex items-center justify-between p-6 border-b border-border">
+      <h2
+        id="modal-title"
+        class="text-xl font-semibold text-text"
+      >
+        {{ title }}
+      </h2>
+
+      <button
+        *ngIf="showCloseButton"
+        type="button"
+        class="p-2 rounded-lg hover:bg-background-secondary transition-colors focus-ring"
+        (click)="closeModal()"
+        aria-label="Close modal"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body p-6 overflow-y-auto max-h-[60vh]">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Modal Footer (optional slot) -->
+    <div class="modal-footer p-6 border-t border-border">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</div>
+
+

@@ -7,6 +7,14 @@
     "types": [],
     "baseUrl": "./",
     "paths": {
+      "@sdk/*": ["Sdk/*"],
+      "@sdk/components": ["Sdk/Components"],
+      "@sdk/layout": ["Sdk/Layout"],
+      "@sdk/toolbar": ["Sdk/Toolbar"],
+      "@sdk/sidenav": ["Sdk/Sidenav"],
+      "@modules/*": ["src/app/Modules/*"],
+      "@guest/*": ["src/app/Guest-View/*"],
+      "@environments/*": ["src/Environments/*"],
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
       "@features/*": ["src/app/features/*"],
@@ -14,7 +22,8 @@
     }
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "Sdk/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"

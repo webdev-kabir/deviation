@@ -1,7 +1,4 @@
-/* Tailwind CSS directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* CSS Variables - Netpower Deviation Color System */
 :root {

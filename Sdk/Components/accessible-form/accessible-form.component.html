@@ -1,0 +1,182 @@
+<div class="max-w-2xl mx-auto p-6 bg-background-card rounded-lg border border-border">
+  <h2 class="text-2xl font-bold mb-6 text-text">Contact Form</h2>
+  
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Name Field -->
+    <div class="mb-4">
+      <label 
+        for="name" 
+        class="block text-sm font-medium text-text mb-2"
+      >
+        Name <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="w-full px-4 py-2 border rounded-lg focus-ring"
+        [class.border-red-500]="isFieldInvalid('name')"
+        [class.border-border]="!isFieldInvalid('name')"
+        [attr.aria-required]="true"
+        [attr.aria-invalid]="isFieldInvalid('name')"
+        [attr.aria-describedby]="isFieldInvalid('name') ? 'name-error' : null"
+      />
+      <div
+        *ngIf="isFieldInvalid('name')"
+        id="name-error"
+        class="mt-1 text-sm text-red-600"
+        role="alert"
+        aria-live="polite"
+      >
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-4">
+      <label 
+        for="email" 
+        class="block text-sm font-medium text-text mb-2"
+      >
+        Email <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="w-full px-4 py-2 border rounded-lg focus-ring"
+        [class.border-red-500]="isFieldInvalid('email')"
+        [class.border-border]="!isFieldInvalid('email')"
+        [attr.aria-required]="true"
+        [attr.aria-invalid]="isFieldInvalid('email')"
+        [attr.aria-describedby]="isFieldInvalid('email') ? 'email-error' : null"
+      />
+      <div
+        *ngIf="isFieldInvalid('email')"
+        id="email-error"
+        class="mt-1 text-sm text-red-600"
+        role="alert"
+        aria-live="polite"
+      >
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <!-- Subject Field -->
+    <div class="mb-4">
+      <label 
+        for="subject" 
+        class="block text-sm font-medium text-text mb-2"
+      >
+        Subject <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <select
+        id="subject"
+        formControlName="subject"
+        class="w-full px-4 py-2 border rounded-lg focus-ring bg-background-card"
+        [class.border-red-500]="isFieldInvalid('subject')"
+        [class.border-border]="!isFieldInvalid('subject')"
+        [attr.aria-required]="true"
+        [attr.aria-invalid]="isFieldInvalid('subject')"
+        [attr.aria-describedby]="isFieldInvalid('subject') ? 'subject-error' : null"
+      >
+        <option value="">Select a subject</option>
+        <option value="general">General Inquiry</option>
+        <option value="support">Technical Support</option>
+        <option value="feedback">Feedback</option>
+        <option value="other">Other</option>
+      </select>
+      <div
+        *ngIf="isFieldInvalid('subject')"
+        id="subject-error"
+        class="mt-1 text-sm text-red-600"
+        role="alert"
+        aria-live="polite"
+      >
+        {{ getErrorMessage('subject') }}
+      </div>
+    </div>
+
+    <!-- Message Field -->
+    <div class="mb-4">
+      <label 
+        for="message" 
+        class="block text-sm font-medium text-text mb-2"
+      >
+        Message <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <textarea
+        id="message"
+        formControlName="message"
+        rows="5"
+        class="w-full px-4 py-2 border rounded-lg focus-ring resize-vertical"
+        [class.border-red-500]="isFieldInvalid('message')"
+        [class.border-border]="!isFieldInvalid('message')"
+        [attr.aria-required]="true"
+        [attr.aria-invalid]="isFieldInvalid('message')"
+        [attr.aria-describedby]="isFieldInvalid('message') ? 'message-error' : null"
+      ></textarea>
+      <div
+        *ngIf="isFieldInvalid('message')"
+        id="message-error"
+        class="mt-1 text-sm text-red-600"
+        role="alert"
+        aria-live="polite"
+      >
+        {{ getErrorMessage('message') }}
+      </div>
+    </div>
+
+    <!-- Checkbox Field -->
+    <div class="mb-6">
+      <label class="flex items-start gap-2">
+        <input
+          type="checkbox"
+          id="agreeTerms"
+          formControlName="agreeTerms"
+          class="mt-1 h-4 w-4 rounded border-border focus-ring"
+          [attr.aria-required]="true"
+          [attr.aria-invalid]="isFieldInvalid('agreeTerms')"
+          [attr.aria-describedby]="isFieldInvalid('agreeTerms') ? 'terms-error' : null"
+        />
+        <span class="text-sm text-text">
+          I agree to the terms and conditions <span class="text-red-500" aria-label="required">*</span>
+        </span>
+      </label>
+      <div
+        *ngIf="isFieldInvalid('agreeTerms')"
+        id="terms-error"
+        class="mt-1 text-sm text-red-600"
+        role="alert"
+        aria-live="polite"
+      >
+        You must agree to the terms and conditions
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="flex gap-3">
+      <app-accessible-button
+        type="submit"
+        [variant]="'primary'"
+        [loading]="isLoading"
+        [disabled]="isLoading"
+        ariaLabel="Submit contact form"
+      >
+        {{ isLoading ? 'Submitting...' : 'Submit' }}
+      </app-accessible-button>
+
+      <app-accessible-button
+        type="button"
+        [variant]="'ghost'"
+        [disabled]="isLoading"
+        (clicked)="resetForm()"
+        ariaLabel="Reset form"
+      >
+        Reset
+      </app-accessible-button>
+    </div>
+  </form>
+</div>
+
+

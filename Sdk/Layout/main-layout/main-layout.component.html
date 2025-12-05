@@ -1,0 +1,21 @@
+<div class="app-layout">
+  <!-- Toolbar -->
+  <app-main-toolbar (menuToggle)="toggleSidenav()" />
+
+  <div class="layout-container">
+    <!-- Sidenav -->
+    <app-main-sidenav
+      [isOpen]="sidenavOpen()"
+      [navItems]="navItems"
+      (sidenavToggle)="setSidenavOpen($event)"
+    />
+
+    <!-- Main content area -->
+    <main class="main-content" role="main">
+      <div class="content-wrapper">
+        <router-outlet />
+      </div>
+    </main>
+  </div>
+</div>
+

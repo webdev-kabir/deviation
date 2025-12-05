@@ -1,0 +1,71 @@
+<aside
+  [class.open]="isOpen()"
+  class="sidenav bg-background-card border-r border-border"
+  role="navigation"
+  [attr.aria-label]="'Main navigation'"
+>
+  <div class="sidenav-content">
+    <!-- Navigation header -->
+    <div class="p-4 border-b border-border flex items-center justify-between">
+      <h2 class="text-lg font-semibold text-text-primary">Navigation</h2>
+      <button
+        type="button"
+        (click)="close()"
+        class="btn-secondary p-2 rounded-lg focus-ring lg:hidden"
+        aria-label="Close navigation"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation items -->
+    <nav class="p-4">
+      <ul class="space-y-2" role="list">
+        @for (item of navItems(); track item.route) {
+          <li>
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              class="nav-link"
+              [attr.aria-label]="item.ariaLabel || item.label"
+            >
+              @if (item.icon) {
+                <span class="nav-icon" [innerHTML]="item.icon"></span>
+              }
+              <span class="nav-label">{{ item.label }}</span>
+              @if (item.badge) {
+                <span class="nav-badge badge badge-info">
+                  {{ item.badge }}
+                </span>
+              }
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Overlay for mobile -->
+  @if (isOpen()) {
+    <div
+      class="sidenav-overlay lg:hidden"
+      (click)="close()"
+      aria-hidden="true"
+    ></div>
+  }
+</aside>
+

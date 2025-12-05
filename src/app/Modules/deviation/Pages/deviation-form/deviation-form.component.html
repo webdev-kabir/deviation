@@ -1,0 +1,128 @@
+<div class="deviation-form-page">
+  <div class="page-header">
+    <h1 class="text-3xl font-bold text-text-primary">Create Deviation</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="deviation-form card p-6">
+    <!-- Title field -->
+    <div class="form-field">
+      <label for="title" class="form-label">
+        Title <span class="text-danger">*</span>
+      </label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        class="form-input"
+        [class.error]="getFieldError('title')"
+        placeholder="Enter deviation title"
+      />
+      @if (getFieldError('title')) {
+        <p class="form-error">{{ getFieldError('title') }}</p>
+      }
+    </div>
+
+    <!-- Description field -->
+    <div class="form-field">
+      <label for="description" class="form-label">
+        Description <span class="text-danger">*</span>
+      </label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-input"
+        [class.error]="getFieldError('description')"
+        rows="5"
+        placeholder="Describe the deviation in detail"
+      ></textarea>
+      @if (getFieldError('description')) {
+        <p class="form-error">{{ getFieldError('description') }}</p>
+      }
+    </div>
+
+    <!-- Priority field -->
+    <div class="form-field">
+      <label for="priority" class="form-label">
+        Priority <span class="text-danger">*</span>
+      </label>
+      <select id="priority" formControlName="priority" class="form-input">
+        @for (priority of priorities; track priority) {
+          <option [value]="priority">{{ priority | titlecase }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Category field -->
+    <div class="form-field">
+      <label for="category" class="form-label">
+        Category <span class="text-danger">*</span>
+      </label>
+      <input
+        id="category"
+        type="text"
+        formControlName="category"
+        class="form-input"
+        [class.error]="getFieldError('category')"
+        placeholder="Enter category"
+      />
+      @if (getFieldError('category')) {
+        <p class="form-error">{{ getFieldError('category') }}</p>
+      }
+    </div>
+
+    <!-- Assigned To field -->
+    <div class="form-field">
+      <label for="assignedTo" class="form-label">Assigned To</label>
+      <input
+        id="assignedTo"
+        type="text"
+        formControlName="assignedTo"
+        class="form-input"
+        placeholder="Assign to user (optional)"
+      />
+    </div>
+
+    <!-- Due Date field -->
+    <div class="form-field">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input
+        id="dueDate"
+        type="date"
+        formControlName="dueDate"
+        class="form-input"
+      />
+    </div>
+
+    <!-- Error message -->
+    @if (error()) {
+      <div class="alert alert-error">
+        {{ error() }}
+      </div>
+    }
+
+    <!-- Form actions -->
+    <div class="form-actions">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="btn-secondary focus-ring"
+        [disabled]="loading()"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn-primary focus-ring"
+        [disabled]="loading() || form.invalid"
+      >
+        @if (loading()) {
+          <span class="inline-block animate-spin mr-2">⏳</span>
+          Creating...
+        } @else {
+          Create Deviation
+        }
+      </button>
+    </div>
+  </form>
+</div>
+
